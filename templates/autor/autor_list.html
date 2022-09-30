@@ -1,0 +1,65 @@
+{% extends 'base/base.html' %}
+
+
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nombre</td>
+			<td>Apellidos</td>
+			<td>E-mail</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for autor in object_list %}
+		<tr>
+			<td>{{ autor.id }}</td>
+			<td>{{ autor.nombre }}</td>
+			<td>{{ autor.apellidos }}</td>
+			<td>{{ autor.email }}</td>
+		
+			<td>
+				<a class="btn btn-primary" href="{% url 'autor:autor_editar_class' autor.id %}">Editar</a>
+				<a class="btn btn-primary" href="{% url 'autor:autor_eliminar_class' autor.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+
+
+		{% elif autores %}
+		{% for autor in autores %}
+		<tr>
+			<td>{{ autor.id }}</td>
+			<td>{{ autor.nombre }}</td>
+			<td>{{ autor.apellidos }}</td>
+			<td>{{ autor.email }}</td>
+		
+			<td>
+				<a class="btn btn-primary" href="{% url 'autor:autor_editar_def' autor.id %}">Editar</a>
+				<a class="btn btn-primary" href="{% url 'autor:autor_eliminar_def' autor.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+
+
+		{% else %}
+		<h1>No hay registros de Autores</h1>
+
+		{% endif %}
+
+
+
+
+		
+
+		
+
+		
+	</tbody>
+</table>
+
+{% endblock %}

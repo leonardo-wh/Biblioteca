@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+
+
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Titulo</td>
+			<td>Autores</td>
+			<td>Editor</td>
+			<td>Fecha de publicacion</td>
+			<td>Portada</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for libro in object_list %}
+		<tr>
+			<td>{{ libro.id }}</td>
+			<td>{{ libro.titulo }}</td>
+
+			{% for autor in autores %}
+			<td>{{ autores.autores }}</td>
+			{% endfor %}
+
+			<td>{{ libro.editor }}</td>
+			<td>{{ libro.fecha_publicacion }}</td>
+			<td><img src="{{ libro.portada.url }}" style=" object-fit: contain;  width: 50%;  height: 50%; " ></td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'libro:libro_editar_class' libro.id %}">Editar</a>
+				<a class="btn btn-primary" href="{% url 'libro:libro_eliminar_class' libro.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+
+
+		{% elif libros %}
+		{% for libro in libros %}
+		<tr>
+			<td>{{ libro.id }}</td>
+			<td>{{ libro.titulo }}</td>
+
+			{% for autor in autores %}
+			<td>{{ autores.autores  }}</td>
+			{% endfor %}
+			
+			<td>{{ libro.editor }}</td>
+			<td>{{ libro.fecha_publicacion }}</td>
+			<td><img src="{{ libro.portada.url }}" style=" object-fit: contain;  width: 50%;  height: 50%; margin: ;" ></td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'libro:libro_editar_def' libro.id %}">Editar</a>
+				<a class="btn btn-primary" href="{% url 'libro:libro_eliminar_def' libro.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay registros de libros</h1>
+
+		{% endif %}
+
+
+
+
+		
+
+		
+
+		
+	</tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+
+<form method="post">
+	{% csrf_token %}
+	<h3>¿Desea eliminar al autor {{ object.nombre }}</h3>
+	<button class="btm btn-danger" type="sumbit">Sí, eliminar</button>
+	<a class="btn btn-default" href="{% url 'libro:autor_autor_class' %}">Cancelar</a>
+
+</form>
+{% endblock %}
